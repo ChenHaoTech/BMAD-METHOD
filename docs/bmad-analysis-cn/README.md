@@ -14,6 +14,7 @@ bmad-analysis-cn/
 ├── 03-agent-system-design.md    # Agent系统设计分析
 ├── 04-lifecycle-management.md   # 生命周期管理机制
 ├── 05-typical-scenario.md       # 典型场景剖析
+├── 06-critical-analysis.md      # 批判性反思："结构化敏捷"的质疑
 ├── scripts/                     # 分析脚本工具
 │   ├── agent-analyzer.js        # Agent结构分析器
 │   ├── workflow-mapper.js       # 工作流映射器
@@ -89,8 +90,14 @@ bmad-analysis-cn/
    02-step-file-architecture.md →
    03-agent-system-design.md →
    04-lifecycle-management.md →
-   05-typical-scenario.md
+   05-typical-scenario.md →
+   06-critical-analysis.md (批判性思考)
    ```
+
+2. **双重视角学习法**:
+   - **前5篇**: 深入理解BMAD-METHOD的设计理念和技术实现
+   - **第6篇**: 批判性质疑"结构化敏捷"概念的合理性
+   - **目标**: 培养独立思考，避免盲目跟风或全盘否定
 
 2. **实践建议**:
    - 运行分析脚本了解内部结构
