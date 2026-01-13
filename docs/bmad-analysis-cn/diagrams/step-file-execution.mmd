@@ -1,0 +1,46 @@
+sequenceDiagram
+    participant User as 用户
+    participant System as BMAD系统
+    participant StepFile as 步骤文件
+    participant Doc as 文档状态
+
+    Note over User,Doc: Step-File Architecture 执行流程
+
+    User->>System: 触发工作流 (如: "John: CP")
+    System->>StepFile: 加载 workflow.md
+    StepFile->>System: 模式路由 (Create/Validate/Edit)
+
+    System->>Doc: 检查现有文档状态
+    Doc->>System: 返回状态 (fresh/continuation/completed)
+
+    alt 继续现有工作流
+        System->>StepFile: 加载 step-01b-continue.md
+        StepFile->>System: 分析当前进度
+        System->>User: 显示继续选项
+    else 全新工作流
+        System->>StepFile: 加载 step-01-init.md
+        StepFile->>System: 完整读取步骤指令
+    end
+
+    loop 步骤执行循环
+        System->>StepFile: 执行当前步骤
+        StepFile->>System: 处理步骤逻辑
+        System->>User: 显示结果和菜单
+        User->>System: 用户选择 ([C]继续/其他)
+
+        alt 用户选择继续
+            System->>Doc: 更新 frontmatter
+            Doc->>Doc: 添加到 stepsCompleted
+            System->>StepFile: 加载下一步骤文件
+            Note over System: 🛑 严格串行执行
+        else 用户提供输入
+            System->>StepFile: 处理用户输入
+            System->>Doc: 更新文档内容
+        end
+    end
+
+    StepFile->>System: 到达最终步骤
+    System->>Doc: 标记工作流完成
+    System->>User: 显示完成报告
+
+    Note over User,Doc: 关键特性：可恢复、可审计、严格顺序

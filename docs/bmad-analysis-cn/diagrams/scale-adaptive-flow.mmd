@@ -1,0 +1,47 @@
+graph TD
+    A[用户输入项目描述] --> B{Level检测器}
+
+    B --> B1[关键词分析]
+    B --> B2[Story数量估算]
+    B --> B3[复杂度评估]
+
+    B1 --> C{综合评分}
+    B2 --> C
+    B3 --> C
+
+    C --> D0[Level 0<br/>Single Atomic Change]
+    C --> D1[Level 1<br/>Small Feature]
+    C --> D2[Level 2<br/>Medium Project]
+    C --> D3[Level 3<br/>Complex System]
+    C --> D4[Level 4<br/>Enterprise Scale]
+
+    D0 --> E0[Quick Spec<br/>直接实现]
+    D1 --> E1[Tech Spec<br/>简单设计]
+    D2 --> E2[PRD + 可选架构<br/>标准流程]
+    D3 --> E3[PRD + 架构<br/>完整流程]
+    D4 --> E4[企业级文档<br/>治理流程]
+
+    E0 --> F[Phase 4: Implementation]
+    E1 --> G[Phase 2: Planning]
+    E2 --> G
+    E3 --> H[Phase 1: Analysis]
+    E4 --> H
+
+    G --> I[Phase 3: Solutioning]
+    H --> G
+    I --> F
+
+    F --> J{Gate检查}
+    J --> K[项目交付]
+    J --> L[Course Correction]
+    L --> F
+
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style C fill:#fff3e0
+    style D0 fill:#ffebee
+    style D1 fill:#e8f5e8
+    style D2 fill:#fff9c4
+    style D3 fill:#e3f2fd
+    style D4 fill:#f1f8e9
+    style K fill:#c8e6c9

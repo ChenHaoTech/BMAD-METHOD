@@ -1,0 +1,87 @@
+graph LR
+    subgraph "用户交互层"
+        User[用户]
+        CLI[BMAD CLI]
+    end
+
+    subgraph "Agent协作层"
+        Master[🧙 BMad Master<br/>系统编排]
+
+        subgraph "BMM核心Agents"
+            John[📋 John<br/>Product Manager]
+            Sarah[🏗️ Sarah<br/>Architect]
+            Alex[💻 Alex<br/>Developer]
+            Morgan[📊 Morgan<br/>Analyst]
+            Riley[🎯 Riley<br/>Scrum Master]
+            Jordan[⚡ Jordan<br/>TEA]
+            Casey[🎨 Casey<br/>UX Designer]
+            Taylor[📝 Taylor<br/>Tech Writer]
+            Solo[🚀 Quick Solo Dev]
+        end
+
+        subgraph "CIS创意Agents"
+            BC[💡 Brainstorming Coach]
+            CPS[🧩 Creative Problem Solver]
+            DTC[🎯 Design Thinking Coach]
+            IS[📈 Innovation Strategist]
+            PM[🎪 Presentation Master]
+            ST[📚 Storyteller]
+        end
+    end
+
+    subgraph "文档状态层"
+        PRD[prd.md]
+        ARCH[architecture.md]
+        EPICS[epics-and-stories.md]
+        SPEC[tech-spec.md]
+        TEST[test-design.md]
+    end
+
+    subgraph "工作流执行层"
+        WF1[Phase 1: Analysis]
+        WF2[Phase 2: Planning]
+        WF3[Phase 3: Solutioning]
+        WF4[Phase 4: Implementation]
+    end
+
+    %% 用户交互
+    User --> CLI
+    CLI --> Master
+
+    %% Agent触发关系
+    Master --> John
+    Master --> Sarah
+    Master --> Alex
+
+    %% 工作流程
+    John --> PRD
+    PRD --> Sarah
+    Sarah --> ARCH
+    ARCH --> Alex
+    Alex --> SPEC
+
+    John --> EPICS
+    Jordan --> TEST
+
+    %% 阶段关系
+    WF1 --> WF2
+    WF2 --> WF3
+    WF3 --> WF4
+
+    John -.-> WF2
+    Sarah -.-> WF3
+    Alex -.-> WF4
+    Jordan -.-> WF4
+
+    %% 创意协作
+    BC -.-> John
+    CPS -.-> Sarah
+    DTC -.-> Casey
+
+    style User fill:#e1f5fe
+    style Master fill:#fff3e0
+    style John fill:#e8f5e8
+    style Sarah fill:#f3e5f5
+    style Alex fill:#fff9c4
+    style PRD fill:#ffebee
+    style ARCH fill:#e3f2fd
